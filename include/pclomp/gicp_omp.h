@@ -103,12 +103,12 @@ public:
   using ConstPtr =
     pcl::shared_ptr<const GeneralizedIterativeClosestPoint<PointSource, PointTarget> >;
 #else
-  using MatricesVectorPtr = boost::shared_ptr<MatricesVector>;
-  using MatricesVectorConstPtr = boost::shared_ptr<const MatricesVector>;
+  using MatricesVectorPtr = std::shared_ptr<MatricesVector>;
+  using MatricesVectorConstPtr = std::shared_ptr<const MatricesVector>;
 
-  using Ptr = boost::shared_ptr<GeneralizedIterativeClosestPoint<PointSource, PointTarget> >;
+  using Ptr = std::shared_ptr<GeneralizedIterativeClosestPoint<PointSource, PointTarget> >;
   using ConstPtr =
-    boost::shared_ptr<const GeneralizedIterativeClosestPoint<PointSource, PointTarget> >;
+    std::shared_ptr<const GeneralizedIterativeClosestPoint<PointSource, PointTarget> >;
 #endif
 
   using Vector6d = Eigen::Matrix<double, 6, 1>;
@@ -137,7 +137,7 @@ public:
   }
 
   /** \brief Provide a pointer to the input dataset
-   * \param cloud the const boost shared pointer to a PointCloud message
+   * \param cloud the const std shared pointer to a PointCloud message
    */
   inline void setInputSource(const PointCloudSourceConstPtr & cloud) override
   {

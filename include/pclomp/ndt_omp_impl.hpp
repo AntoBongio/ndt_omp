@@ -56,7 +56,7 @@ pclomp::NormalDistributionsTransform<PointSource, PointTarget>::NormalDistributi
   gauss_d2_(),
   gauss_d3_(),
   trans_probability_(),
-  regularization_pose_(boost::none)
+  regularization_pose_(std::nullopt)
 {
   reg_name_ = "NormalDistributionsTransform";
 
@@ -126,7 +126,7 @@ void pclomp::NormalDistributionsTransform<PointSource, PointTarget>::computeTran
 
   if (regularization_pose_) {
     Eigen::Transform<float, 3, Eigen::Affine, Eigen::ColMajor> regularization_pose_transformation;
-    regularization_pose_transformation.matrix() = regularization_pose_.get();
+    regularization_pose_transformation.matrix() = regularization_pose_.value();
     regularization_pose_translation_ = regularization_pose_transformation.translation();
   }
 

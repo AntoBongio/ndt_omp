@@ -59,7 +59,6 @@
 // clang-format off
 #include <pcl/pcl_macros.h>
 // clang-format on
-#include <pcl/filters/boost.h>
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/kdtree/kdtree_flann.h>
 #include <pcl/pcl_macros.h>
@@ -68,6 +67,7 @@
 #include <future>
 #include <map>
 #include <unordered_map>
+
 
 namespace pclomp
 {
@@ -108,8 +108,8 @@ public:
   typedef pcl::shared_ptr<pcl::VoxelGrid<PointT>> Ptr;
   typedef pcl::shared_ptr<const pcl::VoxelGrid<PointT>> ConstPtr;
 #else
-  typedef boost::shared_ptr<pcl::VoxelGrid<PointT>> Ptr;
-  typedef boost::shared_ptr<const pcl::VoxelGrid<PointT>> ConstPtr;
+  typedef std::shared_ptr<pcl::VoxelGrid<PointT>> Ptr;
+  typedef std::shared_ptr<const pcl::VoxelGrid<PointT>> ConstPtr;
 #endif
 
   /** \brief Simple structure to hold a centroid, covariance and the number of points in a leaf.

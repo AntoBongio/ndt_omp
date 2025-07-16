@@ -47,7 +47,7 @@
 #include <pcl/search/impl/search.hpp>
 #include <unsupported/Eigen/NonLinearOptimization>
 
-#include "boost/optional.hpp"
+#include <optional>
 
 #include <pcl/registration/registration.h>
 
@@ -104,8 +104,8 @@ public:
   typedef pcl::shared_ptr<NormalDistributionsTransform<PointSource, PointTarget>> Ptr;
   typedef pcl::shared_ptr<const NormalDistributionsTransform<PointSource, PointTarget>> ConstPtr;
 #else
-  typedef boost::shared_ptr<NormalDistributionsTransform<PointSource, PointTarget>> Ptr;
-  typedef boost::shared_ptr<const NormalDistributionsTransform<PointSource, PointTarget>> ConstPtr;
+  typedef std::shared_ptr<NormalDistributionsTransform<PointSource, PointTarget>> Ptr;
+  typedef std::shared_ptr<const NormalDistributionsTransform<PointSource, PointTarget>> ConstPtr;
 #endif
 
   /** \brief Constructor.
@@ -256,7 +256,7 @@ public:
     regularization_pose_ = regularization_pose;
   }
 
-  inline void unsetRegularizationPose() { regularization_pose_ = boost::none; }
+  inline void unsetRegularizationPose() { regularization_pose_ = std::nullopt; }
 
   NdtResult getResult()
   {
@@ -536,7 +536,7 @@ protected:
   std::vector<Eigen::Matrix4f, Eigen::aligned_allocator<Eigen::Matrix4f>> transformation_array_;
   double nearest_voxel_transformation_likelihood_;
 
-  boost::optional<Eigen::Matrix4f> regularization_pose_;
+  std::optional<Eigen::Matrix4f> regularization_pose_;
   Eigen::Vector3f regularization_pose_translation_;
 
   // add at 20220721 konishi

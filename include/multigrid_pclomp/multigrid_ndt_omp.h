@@ -61,7 +61,7 @@
 #include <pcl/search/impl/search.hpp>
 #include <unsupported/Eigen/NonLinearOptimization>
 
-#include "boost/optional.hpp"
+#include <optional>
 
 #include <pcl/registration/registration.h>
 
@@ -103,8 +103,8 @@ public:
   typedef pcl::shared_ptr<const MultiGridNormalDistributionsTransform<PointSource, PointTarget>>
     ConstPtr;
 #else
-  typedef boost::shared_ptr<MultiGridNormalDistributionsTransform<PointSource, PointTarget>> Ptr;
-  typedef boost::shared_ptr<const MultiGridNormalDistributionsTransform<PointSource, PointTarget>>
+  typedef std::shared_ptr<MultiGridNormalDistributionsTransform<PointSource, PointTarget>> Ptr;
+  typedef std::shared_ptr<const MultiGridNormalDistributionsTransform<PointSource, PointTarget>>
     ConstPtr;
 #endif
 
@@ -275,7 +275,7 @@ public:
     regularization_pose_ = regularization_pose;
   }
 
-  inline void unsetRegularizationPose() { regularization_pose_ = boost::none; }
+  inline void unsetRegularizationPose() { regularization_pose_ = std::nullopt; }
 
   NdtResult getResult()
   {
@@ -553,7 +553,7 @@ protected:
   std::vector<float> nearest_voxel_transformation_likelihood_array_;
   double nearest_voxel_transformation_likelihood_{};
 
-  boost::optional<Eigen::Matrix4f> regularization_pose_;
+  std::optional<Eigen::Matrix4f> regularization_pose_;
   Eigen::Vector3f regularization_pose_translation_;
 
   NdtParams params_;
